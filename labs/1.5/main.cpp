@@ -1,39 +1,25 @@
 /**
- * Done by:
- * Student Name: Severyn Kotyhoroshko
- * Student Group: 123
- * Lab 1.5
+ * Виконано:
+ * Студент: Сидорець Максим Віталійович
+ * Група: 121
+ * Лабораторна робота 1.5
  */
-
 #include <iostream>
-#include <cmath>
-
-using namespace std;
-
 int main() {
-    {
-        int a = 10;
-        int b = 20;
-        int c = 30;
-        int d = 40;
+    // Завдання 1
+    float x1 = 5.8, y1 = 39.1, z1 = 70, w1 = 42; // Оголошення та ініціалізація змінних для першого виразу
+    bool ResultA = (!(x1 = y1) ^ !(z1 < w1)); // Обчислення першого  виразу
+    float x2 = 85, y2 = 85, z2 = 6.4, w2 = 9.3; // Оголошення та ініціалізація змінних для другого виразу
+    bool ResultB = (!(x2 = y2) ^ !(z2 < w2)); // Обчислення другого  виразу
+    std::cout << "Result 1: " << ResultA << '\n' << "Result 2: " << ResultB << '\n'; // результат
 
-        // <РЈР›Рћ1> (<РЈР›Рћ2> (A<РћР’1>B) <Р‘Р›Рћ> (<РЈР›Рћ3> (C<РћР’2>D)))
-        //  empty (  !    (a == b)    ^   (   !   (c != d)))
-        bool res = (!(a == b) ^ (!(c != d)));
-        cout << "res: " << boolalpha << res << endl;
-    }
+    // Завдання 2
+    const long constValue = 49; // Ініціалізація константи
+    long varB = -65, varE = 2; // Оголошення змінних
+    long varC; // Оголошення змінної varC
+    long* ptrC = &varC; // Ініціалізація вказівника на varC
+    *ptrC = 23; // Присвоєння значення через вказівник
+    bool ResultC = ((constValue ^ (-varB)) - *ptrC) >= (13 + (varE << sizeof(long))); // Обчислення  виразу
+    std::cout << "Result 3: " << ResultC << '\n'; //  результат
 
-    {
-        int a = 10;
-        int b = 20;
-        int c = 30;
-        int d = 40;
-
-        // <РЈР›Рћ1> (<РЈР›Рћ2> (A<РћР’1>B) <Р‘Р›Рћ> (<РЈР›Рћ3> (C<РћР’2>D)))
-        //  empty (  !    (a == b)    ^   (   !   (c != d)))
-        bool res = (!(a == b) ^ (!(c != d)));
-        cout << "res: " << boolalpha << res << endl;
-    }
-
-    return 0;
 }
