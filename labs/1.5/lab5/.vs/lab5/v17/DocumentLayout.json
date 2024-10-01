@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fridd\\source\\repos\\NAU-op\\labs\\1.5\\lab5\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8908CAA8-0C8F-408E-86DF-D0235D500464}|lab5\\lab5.vcxproj|C:\\Users\\fridd\\source\\repos\\NAU-op\\labs\\1.5\\lab5\\lab5\\lab5.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8908CAA8-0C8F-408E-86DF-D0235D500464}|lab5\\lab5.vcxproj|solutionrelative:lab5\\lab5.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "lab5.cpp",
+              "DocumentMoniker": "C:\\Users\\fridd\\source\\repos\\NAU-op\\labs\\1.5\\lab5\\lab5\\lab5.cpp",
+              "RelativeDocumentMoniker": "lab5\\lab5.cpp",
+              "ToolTip": "C:\\Users\\fridd\\source\\repos\\NAU-op\\labs\\1.5\\lab5\\lab5\\lab5.cpp",
+              "RelativeToolTip": "lab5\\lab5.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-25T20:16:45.716Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
