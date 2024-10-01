@@ -1,39 +1,27 @@
+// -*- coding: utf-8 -*-
+
 /**
- * Done by:
- * Student Name: Severyn Kotyhoroshko
- * Student Group: 123
- * Lab 1.5
- */
-
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
+* ��������:
+* �������: �������� ������ ³��������
+* �����: 121
+* ����������� ������ 1.5
+*/
+#include <iostream>-
 int main() {
-    {
-        int a = 10;
-        int b = 20;
-        int c = 30;
-        int d = 40;
+	// �������� 1
+	float x1 = 5.8, y1 = 39.1, z1 = 70, w1 = 42; // ���������� �� ������������ ������ ��� ������� ������
+	bool ResultA = (!(x1 = y1) ^ !(z1 < w1)); // ���������� �������  ������
+	float x2 = 85, y2 = 85, z2 = 6.4, w2 = 9.3; // ���������� �� ������������ ������ ��� ������� ������
+	bool ResultB = (!(x2 = y2) ^ !(z2 < w2)); // ���������� �������  ������
+	std::cout << "Result 1: " << ResultA << '\n' << "Result 2: " << ResultB << '\n'; // ���������
 
-        // <УЛО1> (<УЛО2> (A<ОВ1>B) <БЛО> (<УЛО3> (C<ОВ2>D)))
-        //  empty (  !    (a == b)    ^   (   !   (c != d)))
-        bool res = (!(a == b) ^ (!(c != d)));
-        cout << "res: " << boolalpha << res << endl;
-    }
+	// �������� 2
+	const long constValue = 49; // ������������ ���������
+	long varB = -65, varE = 2; // ���������� ������
+	long varC; // ���������� ����� varC
+	long* ptrC = &varC; // ������������ ��������� �� varC
+	*ptrC = 23; // ��������� �������� ����� ��������
+	bool ResultC = ((constValue ^ (-varB)) - *ptrC) >= (13 + (varE << sizeof(long))); // ����������  ������
+	std::cout << "Result 3: " << ResultC << '\n'; //  ���������
 
-    {
-        int a = 10;
-        int b = 20;
-        int c = 30;
-        int d = 40;
-
-        // <УЛО1> (<УЛО2> (A<ОВ1>B) <БЛО> (<УЛО3> (C<ОВ2>D)))
-        //  empty (  !    (a == b)    ^   (   !   (c != d)))
-        bool res = (!(a == b) ^ (!(c != d)));
-        cout << "res: " << boolalpha << res << endl;
-    }
-
-    return 0;
 }
