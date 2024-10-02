@@ -1,4 +1,3 @@
-// -*- coding: utf-8 -*-
 
 /**
 * Виконано:
@@ -23,5 +22,6 @@ int main() {
 	*ptrC = 23; // Присвоєння значення через вказівник
 	bool ResultC = ((constValue ^ (-varB)) - *ptrC) >= (13 + (varE << sizeof(long))); // Обчислення  виразу
 	std::cout << "Result 3: " << ResultC << '\n'; //  результат
+
 
 }
