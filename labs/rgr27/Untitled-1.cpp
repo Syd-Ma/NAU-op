@@ -1,43 +1,74 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <string>
 using namespace std;
 
-int main() {
-    string word = "[+345]"; // Test example, modify as needed
-    bool result = true;
-
-    // Check if the string is not empty and starts with '[' and ends with ']'
-    if (!word.empty() && word[0] == '[' && word[word.size() - 1] == ']') {
-        // Check if the second character is '+' or '-'
-        if (word[1] == '+' || word[1] == '-') {
-            int i = 2;
-            bool has_digit = false;
-            bool has_letter = false;
-
-            // Check for a sequence of digits or letters between '[' and ']'
-            while (i < word.size() - 1) {
-                if (word[i] >= '0' && word[i] <= '9') {
-                    has_digit = true;
-                } else if (word[i] >= 'A' && word[i] <= 'Z') {
-                    has_letter = true;
+bool isValidL(const string& input) {
+    int state = 0;
+    bool hasContent = false;
+    bool isDigitSequence = false;
+    bool isLetterSequence = false;
+    
+    for (size_t i = 0; i < input.length(); ++i) {
+        char c = input[i];
+        switch (state) {
+            case 0:
+                if (c == '[') {
+                    state = 1;
                 } else {
-                    result = false; // Invalid character found
-                    break;
+                    return false;
                 }
-                i++;
-            }
-
-            // Ensure there is either a valid sequence of digits or letters
-            if (!(has_digit || has_letter)) {
-                result = false;
-            }
-        } else {
-            result = false; // Invalid symbol after '['
+                break;
+            case 1:
+                if (c == '+' || c == '-' || c == ' ') {
+                    state = 2;
+                } else {
+                    return false;
+                }
+                break;
+            case 2:
+                if (isdigit(c)) {
+                    if (!isLetterSequence) {
+                        hasContent = true;
+                        isDigitSequence = true;
+                    } else {
+                        return false;
+                    }
+                } else if (isalpha(c)) {
+                    if (!isDigitSequence) {
+                        hasContent = true;
+                        isLetterSequence = true;
+                    } else {
+                        return false;
+                    }
+                } else if (c == ']') {
+                    if (hasContent) {
+                        state = 3;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+                break;
+            case 3:
+                return true;
+            default:
+                return false;
         }
-    } else {
-        result = false; // Invalid start or end symbol
     }
+    return state == 3;
+}
 
-    cout << result << endl; // Outputs 1 (true) or 0 (false)
+int main() {
+    string input;
+    cout << "Введіть рядок: ";
+    cin >> input;
+    
+    if (isValidL(input)) {
+        cout << "Рядок правильний для мови L(V)." << endl;
+    } else {
+        cout << "Помилка: Рядок не відповідає мові L(V)." << endl;
+    }
+    
     return 0;
 }
