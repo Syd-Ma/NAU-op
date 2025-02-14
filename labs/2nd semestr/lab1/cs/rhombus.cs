@@ -60,6 +60,11 @@ namespace RhombusApp
             Console.WriteLine($"  B({x2}, {y2})");
             Console.WriteLine($"  C({x3}, {y3})");
             Console.WriteLine($"  D({x4}, {y4})");
+            Console.WriteLine($"Довжина сторони: {GetSideLength():F2}");
+            Console.WriteLine($"Перша діагональ: {GetDiagonal1():F2}");
+            Console.WriteLine($"Друга діагональ: {GetDiagonal2():F2}");
+            Console.WriteLine($"Периметр: {GetPerimeter():F2}");
+            Console.WriteLine($"Площа: {GetArea():F2}");
         }
     }
 }
