@@ -53,9 +53,20 @@ namespace RhombusApp
         }
 
 
+        public void PrintInfo()
+        {
+            Console.WriteLine("Властивості ромба");
+            PrintCoordinates();
+            Console.WriteLine($"Довжина сторони: {GetSideLength():F2}");
+            Console.WriteLine($"Перша діагональ: {GetDiagonal1():F2}");
+            Console.WriteLine($"Друга діагональ: {GetDiagonal2():F2}");
+            Console.WriteLine($"Периметр: {GetPerimeter():F2}");
+            Console.WriteLine($"Площа: {GetArea():F2}");
+        }
+
         public void PrintCoordinates()
         {
-            Console.WriteLine($"Вершини ромба: ");
+            Console.WriteLine("Вершини ромба:");
             Console.WriteLine($"  A({x1}, {y1})");
             Console.WriteLine($"  B({x2}, {y2})");
             Console.WriteLine($"  C({x3}, {y3})");

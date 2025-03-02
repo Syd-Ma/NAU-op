@@ -30,9 +30,6 @@ namespace RhombusApp
 
             Console.WriteLine($"\nПериметр: {rhombus.GetPerimeter()}");
             Console.WriteLine($"Площа: {rhombus.GetArea()}");
-
-            Console.WriteLine("\nНатисніть будь-яку клавішу для завершення...");
-            Console.ReadKey();
         }
     }
 }
