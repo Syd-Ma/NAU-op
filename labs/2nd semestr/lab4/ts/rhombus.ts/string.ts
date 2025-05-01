@@ -24,8 +24,7 @@ export class DigitLine extends TextLine {
     }
 
     removeSymbol(symbol: string): void {
-        const regex = new RegExp(symbol, "g");
-        this._value = this._value.replace(regex, "");
+        this._value = this._value.replace(symbol, "");
     }
 
     get cleanedValue(): string {
