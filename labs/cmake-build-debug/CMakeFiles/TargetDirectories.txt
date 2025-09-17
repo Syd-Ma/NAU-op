@@ -1,3 +1,0 @@
-C:/Users/fridd/NAU-op/labs/cmake-build-debug/CMakeFiles/labs.dir
-C:/Users/fridd/NAU-op/labs/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/fridd/NAU-op/labs/cmake-build-debug/CMakeFiles/rebuild_cache.dir
