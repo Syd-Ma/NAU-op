@@ -1,0 +1,10 @@
+Student ФФ
+{
+  "firstname": "Ф",
+  "lastname": "Ф",
+  "studentId": "KB123456",
+  "course": 5,
+  "gender": "female",
+  "grade": 95,
+  "id": "1243556"
+};
