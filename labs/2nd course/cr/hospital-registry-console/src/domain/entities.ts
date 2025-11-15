@@ -8,7 +8,6 @@ export const DoctorSchema = z.object({
     phone: z.string().optional(),
     email: z.string().email().optional()
 });
-export type Doctor = z.infer<typeof DoctorSchema>;
 
 export const PatientSchema = z.object({
     id: z.string(),
@@ -19,7 +18,6 @@ export const PatientSchema = z.object({
     birthDate: z.string().optional(),
     cardNotes: z.array(z.object({ at: z.string(), note: z.string() })).default([])
 });
-export type Patient = z.infer<typeof PatientSchema>;
 
 export const ScheduleSlotSchema = z.object({
     id: z.string(),
@@ -37,4 +35,45 @@ export const AppointmentSchema = z.object({
     slotId: z.string(),
     createdAt: z.string()
 });
+
+export abstract class Person {
+    constructor(
+        public id: string,
+        public firstName: string,
+        public lastName: string,
+        public phone?: string,
+        public email?: string
+    ) {}
+
+    get fullName() {
+        return `${this.lastName} ${this.firstName}`;
+    }
+}
+
+export class Doctor extends Person {
+    constructor(
+        id: string,
+        firstName: string,
+        lastName: string,
+        public specialization: string,
+        phone?: string,
+        email?: string
+    ) {
+        super(id, firstName, lastName, phone, email);
+    }
+}
+
+export class Patient extends Person {
+    constructor(
+        id: string,
+        firstName: string,
+        lastName: string,
+        phone?: string,
+        email?: string,
+        public birthDate?: string
+    ) {
+        super(id, firstName, lastName, phone, email);
+    }
+}
+
 export type Appointment = z.infer<typeof AppointmentSchema>;

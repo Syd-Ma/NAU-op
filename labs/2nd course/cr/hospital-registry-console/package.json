@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc -p .",
     "start": "tsx src/pl/cli.ts",
-    "dev": "tsx watch src/pl/cli.ts"
+    "dev": "tsx watch src/pl/cli.ts",
+    "test": "vitest run"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
@@ -23,6 +24,7 @@
     "@types/uuid": "^9.0.7",
     "ts-node": "^10.9.2",
     "tsx": "^4.15.7",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^4.0.9"
   }
 }
