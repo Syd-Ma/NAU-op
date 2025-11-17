@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -10,7 +9,6 @@ const repos_1 = require("../dal/repos");
 const container_1 = require("../bll/container");
 const services_1 = require("../bll/services");
 const errors_1 = require("../domain/errors");
-/** ===== Ініціалізація шарів ===== */
 const DATA_DIR = process.env.HR_DATA_DIR || "./data";
 const db = new fileDb_1.FileDb(DATA_DIR);
 (0, container_1.registerRepos)({
@@ -23,7 +21,6 @@ const doctorSvc = container_1.container.resolve(services_1.DoctorService);
 const patientSvc = container_1.container.resolve(services_1.PatientService);
 const scheduleSvc = container_1.container.resolve(services_1.ScheduleService);
 const apptSvc = container_1.container.resolve(services_1.AppointmentService);
-/** ===== Утиліти ===== */
 function hr(msg = "") {
     console.log("\n" + "-".repeat(70));
     if (msg)
@@ -35,24 +32,23 @@ async function pause() {
 function handleError(e) {
     const err = e;
     if (err instanceof errors_1.ValidationError)
-        console.error("⛔ Помилка валідації:", err.message);
+        console.error("Помилка валідації:", err.message);
     else if (err instanceof errors_1.NotFoundError)
-        console.error("⛔ Не знайдено:", err.message);
+        console.error("Не знайдено:", err.message);
     else if (err instanceof errors_1.DuplicateError)
-        console.error("⛔ Дублювання:", err.message);
+        console.error("Дублювання:", err.message);
     else if (err instanceof errors_1.SlotUnavailableError)
-        console.error("⛔ Слот недоступний:", err.message);
+        console.error("Слот недоступний:", err.message);
     else if (err instanceof errors_1.OverbookingError)
-        console.error("⛔ Перевищено місткість:", err.message);
+        console.error("Перевищено місткість:", err.message);
     else if (err instanceof errors_1.DomainError)
-        console.error("⛔ Бізнес-помилка:", err.message);
+        console.error("Бізнес-помилка:", err.message);
     else
-        console.error("⛔ Несподівана помилка:", err.message);
+        console.error("Несподівана помилка:", err.message);
 }
-/** ===== Підменю: Лікарі ===== */
 async function menuDoctors() {
     while (true) {
-        hr("👩‍⚕️ Лікарі");
+        hr("Лікарі");
         const { act } = await inquirer_1.default.prompt([{
                 name: "act", type: "list", message: "Оберіть дію:",
                 choices: [
@@ -112,7 +108,7 @@ async function menuDoctors() {
                         choices: list.map(d => ({ name: `${d.lastName} ${d.firstName} — ${d.specialization}`, value: d.id }))
                     }]);
                 await doctorSvc.remove(id);
-                console.log("✅ Видалено");
+                console.log("Видалено");
             }
             if (act === "list") {
                 console.table(await doctorSvc.list());
@@ -128,10 +124,9 @@ async function menuDoctors() {
         await pause();
     }
 }
-/** ===== Підменю: Пацієнти ===== */
 async function menuPatients() {
     while (true) {
-        hr("🧑‍🦽 Пацієнти");
+        hr("Пацієнти");
         const { act } = await inquirer_1.default.prompt([{
                 name: "act", type: "list", message: "Оберіть дію:",
                 choices: [
@@ -192,7 +187,7 @@ async function menuPatients() {
                         choices: list.map(p => ({ name: `${p.lastName} ${p.firstName}`, value: p.id }))
                     }]);
                 await patientSvc.remove(id);
-                console.log("✅ Видалено");
+                console.log("Видалено");
             }
             if (act === "list") {
                 console.table(await patientSvc.list());
@@ -224,10 +219,9 @@ async function menuPatients() {
         await pause();
     }
 }
-/** ===== Підменю: Розклад ===== */
 async function menuSchedule() {
     while (true) {
-        hr("📅 Розклад");
+        hr("Розклад");
         const { act } = await inquirer_1.default.prompt([{
                 name: "act", type: "list", message: "Оберіть дію:",
                 choices: [
@@ -312,7 +306,7 @@ async function menuSchedule() {
                         choices: slots.map(s => ({ name: `${s.start} → ${s.end} [cap=${s.capacity}]`, value: s.id }))
                     }]);
                 await scheduleSvc.removeSlot(slotId);
-                console.log("✅ Видалено");
+                console.log("Видалено");
             }
             if (act === "list") {
                 const docs = await doctorSvc.list();
@@ -334,10 +328,9 @@ async function menuSchedule() {
         await pause();
     }
 }
-/** ===== Підменю: Запис до лікаря ===== */
 async function menuAppointments() {
     while (true) {
-        hr("📌 Записи на прийом");
+        hr(" Записи на прийом");
         const { act } = await inquirer_1.default.prompt([{
                 name: "act", type: "list", message: "Оберіть дію:",
                 choices: [
@@ -407,7 +400,6 @@ async function menuAppointments() {
                 console.table(await apptSvc.listByPatient(patientId));
             }
             if (act === "cancel") {
-                // простий шлях: вибрати лікаря → показати його записи → обрати для скасування
                 const docs = await doctorSvc.list();
                 if (!docs.length) {
                     console.log("Немає лікарів");
@@ -429,7 +421,7 @@ async function menuAppointments() {
                         choices: appts.map(a => ({ name: `${a.id} | slot=${a.slotId} | patient=${a.patientId} | ${a.createdAt}`, value: a.id }))
                     }]);
                 await apptSvc.cancel(apptId);
-                console.log("✅ Скасовано");
+                console.log("Скасовано");
             }
         }
         catch (e) {
@@ -438,7 +430,6 @@ async function menuAppointments() {
         await pause();
     }
 }
-/** ===== Пошук ===== */
 async function menuSearch() {
     while (true) {
         hr("🔎 Пошук");
@@ -468,10 +459,9 @@ async function menuSearch() {
         await pause();
     }
 }
-/** ===== Головне меню ===== */
 async function mainMenu() {
     while (true) {
-        hr("🏥 Реєстратура лікарні — консольний інтерфейс");
+        hr("Реєстратура лікарні — консольний інтерфейс");
         const { section } = await inquirer_1.default.prompt([{
                 name: "section",
                 type: "list",
@@ -486,7 +476,7 @@ async function mainMenu() {
                 ]
             }]);
         if (section === "exit") {
-            console.log("👋 До зустрічі!");
+            console.log("До зустрічі!");
             process.exit(0);
         }
         if (section === "doctors")

@@ -16,14 +16,14 @@ exports.PatientSchema = zod_1.z.object({
     lastName: zod_1.z.string().min(1),
     phone: zod_1.z.string().optional(),
     email: zod_1.z.string().email().optional(),
-    birthDate: zod_1.z.string().optional(), // ISO date
+    birthDate: zod_1.z.string().optional(),
     cardNotes: zod_1.z.array(zod_1.z.object({ at: zod_1.z.string(), note: zod_1.z.string() })).default([])
 });
 exports.ScheduleSlotSchema = zod_1.z.object({
     id: zod_1.z.string(),
     doctorId: zod_1.z.string(),
-    start: zod_1.z.string(), // ISO datetime
-    end: zod_1.z.string(), // ISO datetime
+    start: zod_1.z.string(),
+    end: zod_1.z.string(),
     capacity: zod_1.z.number().int().positive().default(1)
 });
 exports.AppointmentSchema = zod_1.z.object({
