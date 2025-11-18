@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { ScheduleService } from "../src/BLL/services/ScheduleService";
-import { IScheduleRepository } from "../src/BLL/repositories/IScheduleRepository";
-import { IDoctorRepository } from "../src/BLL/repositories/IDoctorRepository";
+import { IScheduleRepository } from "../src/DAL/repositories/IScheduleRepository";
+import { IDoctorRepository } from "../src/DAL/repositories/IDoctorRepository";
 import { ScheduleSlot } from "../src/BLL/entities/ScheduleSlot";
 import { Doctor } from "../src/BLL/entities/Doctor";
 import { ID } from "../src/BLL/types/ID";

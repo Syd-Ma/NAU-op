@@ -1,7 +1,7 @@
 import { BaseFileRepository } from "./BaseFileRepository";
 import { FileDb } from "./FileDb";
 import { Doctor } from "../BLL/entities/Doctor";
-import { IDoctorRepository } from "../BLL/repositories/IDoctorRepository";
+import { IDoctorRepository } from "./repositories/IDoctorRepository";
 
 export class DoctorFileRepository
     extends BaseFileRepository<Doctor>

@@ -1,7 +1,7 @@
 import { BaseFileRepository } from "./BaseFileRepository";
 import { FileDb } from "./FileDb";
 import { ScheduleSlot } from "../BLL/entities/ScheduleSlot";
-import { IScheduleRepository } from "../BLL/repositories/IScheduleRepository";
+import { IScheduleRepository } from "./repositories/IScheduleRepository";
 import { ID } from "../BLL/types/ID";
 
 export class ScheduleFileRepository

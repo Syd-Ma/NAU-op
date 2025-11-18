@@ -1,10 +1,10 @@
-import { IAppointmentRepository } from "../repositories/IAppointmentRepository";
-import { IScheduleRepository } from "../repositories/IScheduleRepository";
-import { IDoctorRepository } from "../repositories/IDoctorRepository";
-import { IPatientRepository } from "../repositories/IPatientRepository";
+import { IAppointmentRepository } from "../../DAL/repositories/IAppointmentRepository";
+import { IScheduleRepository } from "../../DAL/repositories/IScheduleRepository";
+import { IDoctorRepository } from "../../DAL/repositories/IDoctorRepository";
+import { IPatientRepository } from "../../DAL/repositories/IPatientRepository";
 import { Appointment } from "../entities/Appointment";
 import { ID } from "../types/ID";
-import { generateId } from "../utils/idGenerator";
+import { generateId } from "../../utils/idGenerator";
 import { NotFoundError } from "../errors/NotFoundError";
 import { SlotBusyError } from "../errors/SlotBusyError";
 

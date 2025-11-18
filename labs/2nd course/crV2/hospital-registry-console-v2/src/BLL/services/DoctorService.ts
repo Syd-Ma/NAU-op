@@ -1,6 +1,6 @@
-import { IDoctorRepository } from "../repositories/IDoctorRepository";
+import { IDoctorRepository } from "../../DAL/repositories/IDoctorRepository";
 import { Doctor } from "../entities/Doctor";
-import { generateId } from "../utils/idGenerator";
+import { generateId } from "../../utils/idGenerator";
 import { ID } from "../types/ID";
 import { NotFoundError } from "../errors/NotFoundError";
 

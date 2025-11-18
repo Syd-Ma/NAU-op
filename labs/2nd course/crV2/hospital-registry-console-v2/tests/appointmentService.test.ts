@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { AppointmentService } from "../src/BLL/services/AppointmentService";
-import { IAppointmentRepository } from "../src/BLL/repositories/IAppointmentRepository";
-import { IScheduleRepository } from "../src/BLL/repositories/IScheduleRepository";
-import { IDoctorRepository } from "../src/BLL/repositories/IDoctorRepository";
-import { IPatientRepository } from "../src/BLL/repositories/IPatientRepository";
+import { IAppointmentRepository } from "../src/DAL/repositories/IAppointmentRepository";
+import { IScheduleRepository } from "../src/DAL/repositories/IScheduleRepository";
+import { IDoctorRepository } from "../src/DAL/repositories/IDoctorRepository";
+import { IPatientRepository } from "../src/DAL/repositories/IPatientRepository";
 import { Appointment } from "../src/BLL/entities/Appointment";
 import { ScheduleSlot } from "../src/BLL/entities/ScheduleSlot";
 import { Doctor } from "../src/BLL/entities/Doctor";

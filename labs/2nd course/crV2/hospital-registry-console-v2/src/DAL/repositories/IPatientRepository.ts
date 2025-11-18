@@ -1,5 +1,5 @@
-import { Patient } from "../entities/Patient";
-import { ID } from "../types/ID";
+import { Patient } from "../../BLL/entities/Patient";
+import { ID } from "../../BLL/types/ID";
 
 export interface IPatientRepository {
     add(patient: Patient): Promise<void>;

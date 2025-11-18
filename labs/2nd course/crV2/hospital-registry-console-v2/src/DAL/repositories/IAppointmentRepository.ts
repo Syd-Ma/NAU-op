@@ -1,5 +1,5 @@
-import { Appointment } from "../entities/Appointment";
-import { ID } from "../types/ID";
+import { Appointment } from "../../BLL/entities/Appointment";
+import { ID } from "../../BLL/types/ID";
 
 export interface IAppointmentRepository {
     add(appointment: Appointment): Promise<void>;

@@ -1,5 +1,5 @@
-import { Doctor } from "../entities/Doctor";
-import { ID } from "../types/ID";
+import { Doctor } from "../../BLL/entities/Doctor";
+import { ID } from "../../BLL/types/ID";
 
 export interface IDoctorRepository {
     add(doctor: Doctor): Promise<void>;

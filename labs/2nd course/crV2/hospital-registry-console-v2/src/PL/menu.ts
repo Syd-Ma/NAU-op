@@ -3,7 +3,7 @@ import { DoctorService } from "../BLL/services/DoctorService";
 import { PatientService } from "../BLL/services/PatientService";
 import { ScheduleService } from "../BLL/services/ScheduleService";
 import { AppointmentService } from "../BLL/services/AppointmentService";
-import { requireNonEmpty, requirePhone, requireDateTime } from "./inputValidation";
+import { requireNonEmpty, requirePhone, requireDateTime } from "../utils/inputValidation";
 import { DomainError } from "../BLL/errors/DomainError";
 
 export class ConsoleMenu {

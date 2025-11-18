@@ -1,7 +1,7 @@
 import { BaseFileRepository } from "./BaseFileRepository";
 import { FileDb } from "./FileDb";
 import { Appointment } from "../BLL/entities/Appointment";
-import { IAppointmentRepository } from "../BLL/repositories/IAppointmentRepository";
+import { IAppointmentRepository } from "./repositories/IAppointmentRepository";
 import { ID } from "../BLL/types/ID";
 
 export class AppointmentFileRepository

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { DoctorService } from "../src/BLL/services/DoctorService";
-import { IDoctorRepository } from "../src/BLL/repositories/IDoctorRepository";
+import { IDoctorRepository } from "../src/DAL/repositories/IDoctorRepository";
 import { Doctor } from "../src/BLL/entities/Doctor";
 import { ID } from "../src/BLL/types/ID";
 import { NotFoundError } from "../src/BLL/errors/NotFoundError";

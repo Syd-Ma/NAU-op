@@ -1,6 +1,6 @@
-import { IPatientRepository } from "../repositories/IPatientRepository";
+import { IPatientRepository } from "../../DAL/repositories/IPatientRepository";
 import { Patient } from "../entities/Patient";
-import { generateId } from "../utils/idGenerator";
+import { generateId } from "../../utils/idGenerator";
 import { ID } from "../types/ID";
 import { NotFoundError } from "../errors/NotFoundError";
 

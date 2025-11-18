@@ -1,8 +1,8 @@
-import { IScheduleRepository } from "../repositories/IScheduleRepository";
-import { IDoctorRepository } from "../repositories/IDoctorRepository";
+import { IScheduleRepository } from "../../DAL/repositories/IScheduleRepository";
+import { IDoctorRepository } from "../../DAL/repositories/IDoctorRepository";
 import { ScheduleSlot } from "../entities/ScheduleSlot";
 import { ID } from "../types/ID";
-import { generateId } from "../utils/idGenerator";
+import { generateId } from "../../utils/idGenerator";
 import { NotFoundError } from "../errors/NotFoundError";
 import { SlotOverlapError } from "../errors/SlotOverlapError";
 

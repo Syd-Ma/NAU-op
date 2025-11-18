@@ -1,5 +1,5 @@
-import { ScheduleSlot } from "../entities/ScheduleSlot";
-import { ID } from "../types/ID";
+import { ScheduleSlot } from "../../BLL/entities/ScheduleSlot";
+import { ID } from "../../BLL/types/ID";
 
 export interface IScheduleRepository {
     addSlot(slot: ScheduleSlot): Promise<void>;
