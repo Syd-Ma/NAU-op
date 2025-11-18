@@ -1,34 +1,74 @@
 import { FileDb } from "./fileDb";
 import {
-    IDoctorRepository, IPatientRepository, IScheduleRepository, IAppointmentRepository
+    IDoctorRepository,
+    IPatientRepository,
+    IScheduleRepository,
+    IAppointmentRepository
 } from "../domain/repositories";
 import { Doctor, Patient, ScheduleSlot, Appointment } from "../domain/entities";
 import { ID } from "../domain/types";
 
-export class DoctorFileRepo implements IDoctorRepository {
-    constructor(private db: FileDb) {}
-    async add(d: Doctor) {
-        const all = await this.db.read<Doctor>("doctors");
-        all.push(d);
-        await this.db.write("doctors", all);
+class FileRepo<T extends { id: ID }> {
+    constructor(
+        protected readonly db: FileDb,
+        protected readonly collection: string
+    ) {}
+
+    protected async readAll(): Promise<T[]> {
+        return this.db.read<T>(this.collection);
     }
-    async update(d: Doctor) {
-        const all = await this.db.read<Doctor>("doctors");
-        const i = all.findIndex(x => x.id === d.id);
-        if (i >= 0) { all[i] = d; await this.db.write("doctors", all); }
+
+    protected async writeAll(all: T[]): Promise<void> {
+        await this.db.write(this.collection, all);
     }
-    async remove(id: ID) {
-        const all = await this.db.read<Doctor>("doctors");
-        await this.db.write("doctors", all.filter(x => x.id !== id));
+
+    async add(entity: T): Promise<void> {
+        const all = await this.readAll();
+        all.push(entity);
+        await this.writeAll(all);
     }
-    async getById(id: ID) {
-        const all = await this.db.read<Doctor>("doctors");
+
+    async update(entity: T): Promise<void> {
+        const all = await this.readAll();
+        const i = all.findIndex(x => x.id === entity.id);
+        if (i >= 0) {
+            all[i] = entity;
+            await this.writeAll(all);
+        }
+    }
+
+    async remove(id: ID): Promise<void> {
+        const all = await this.readAll();
+        await this.writeAll(all.filter(x => x.id !== id));
+    }
+
+    async getById(id: ID): Promise<T | undefined> {
+        const all = await this.readAll();
         return all.find(x => x.id === id);
     }
-    async list() { return this.db.read<Doctor>("doctors"); }
+
+    async list(): Promise<T[]> {
+        return this.readAll();
+    }
+}
+
+export class DoctorFileRepo
+    extends FileRepo<Doctor>
+    implements IDoctorRepository
+{
+    constructor(db: FileDb) {
+        super(db, "doctors");
+    }
+
+    async add(d: Doctor) { return super.add(d); }
+    async update(d: Doctor) { return super.update(d); }
+    async remove(id: ID) { return super.remove(id); }
+    async getById(id: ID) { return super.getById(id); }
+    async list() { return super.list(); }
+
     async findByNameOrSpec(q: string) {
         const s = q.toLowerCase();
-        const all = await this.db.read<Doctor>("doctors");
+        const all = await this.list();
         return all.filter(x =>
             `${x.firstName} ${x.lastName}`.toLowerCase().includes(s) ||
             x.specialization.toLowerCase().includes(s)
@@ -36,81 +76,71 @@ export class DoctorFileRepo implements IDoctorRepository {
     }
 }
 
-export class PatientFileRepo implements IPatientRepository {
-    constructor(private db: FileDb) {}
-    async add(p: Patient) {
-        const all = await this.db.read<Patient>("patients");
-        all.push(p);
-        await this.db.write("patients", all);
+export class PatientFileRepo
+    extends FileRepo<Patient>
+    implements IPatientRepository
+{
+    constructor(db: FileDb) {
+        super(db, "patients");
     }
-    async update(p: Patient) {
-        const all = await this.db.read<Patient>("patients");
-        const i = all.findIndex(x => x.id === p.id);
-        if (i >= 0) { all[i] = p; await this.db.write("patients", all); }
-    }
-    async remove(id: ID) {
-        const all = await this.db.read<Patient>("patients");
-        await this.db.write("patients", all.filter(x => x.id !== id));
-    }
-    async getById(id: ID) {
-        const all = await this.db.read<Patient>("patients");
-        return all.find(x => x.id === id);
-    }
-    async list() { return this.db.read<Patient>("patients"); }
+
+    async add(p: Patient) { return super.add(p); }
+    async update(p: Patient) { return super.update(p); }
+    async remove(id: ID) { return super.remove(id); }
+    async getById(id: ID) { return super.getById(id); }
+    async list() { return super.list(); }
+
     async findByName(q: string) {
         const s = q.toLowerCase();
-        const all = await this.db.read<Patient>("patients");
-        return all.filter(x => `${x.firstName} ${x.lastName}`.toLowerCase().includes(s));
+        const all = await this.list();
+        return all.filter(x =>
+            `${x.firstName} ${x.lastName}`.toLowerCase().includes(s)
+        );
     }
 }
 
-export class ScheduleFileRepo implements IScheduleRepository {
-    constructor(private db: FileDb) {}
-    async addSlot(s: ScheduleSlot) {
-        const all = await this.db.read<ScheduleSlot>("slots");
-        all.push(s);
-        await this.db.write("slots", all);
+export class ScheduleFileRepo
+    extends FileRepo<ScheduleSlot>
+    implements IScheduleRepository
+{
+    constructor(db: FileDb) {
+        super(db, "slots");
     }
-    async updateSlot(s: ScheduleSlot) {
-        const all = await this.db.read<ScheduleSlot>("slots");
-        const i = all.findIndex(x => x.id === s.id);
-        if (i >= 0) { all[i] = s; await this.db.write("slots", all); }
-    }
-    async removeSlot(id: ID) {
-        const all = await this.db.read<ScheduleSlot>("slots");
-        await this.db.write("slots", all.filter(x => x.id !== id));
-    }
-    async getSlotById(id: ID) {
-        const all = await this.db.read<ScheduleSlot>("slots");
-        return all.find(x => x.id === id);
-    }
+
+    async addSlot(s: ScheduleSlot) { return super.add(s); }
+    async updateSlot(s: ScheduleSlot) { return super.update(s); }
+    async removeSlot(id: ID) { return super.remove(id); }
+    async getSlotById(id: ID) { return super.getById(id); }
+
     async listSlotsByDoctor(doctorId: ID) {
-        const all = await this.db.read<ScheduleSlot>("slots");
+        const all = await this.list();
         return all.filter(x => x.doctorId === doctorId);
     }
 }
 
-export class AppointmentFileRepo implements IAppointmentRepository {
-    constructor(private db: FileDb) {}
-    async add(a: Appointment) {
-        const all = await this.db.read<Appointment>("appointments");
-        all.push(a);
-        await this.db.write("appointments", all);
+export class AppointmentFileRepo
+    extends FileRepo<Appointment>
+    implements IAppointmentRepository
+{
+    constructor(db: FileDb) {
+        super(db, "appointments");
     }
-    async remove(id: ID) {
-        const all = await this.db.read<Appointment>("appointments");
-        await this.db.write("appointments", all.filter(x => x.id !== id));
-    }
+
+    async add(a: Appointment) { return super.add(a); }
+    async remove(id: ID) { return super.remove(id); }
+
     async listBySlot(slotId: ID) {
-        const all = await this.db.read<Appointment>("appointments");
+        const all = await this.list();
         return all.filter(x => x.slotId === slotId);
     }
+
     async listByDoctor(doctorId: ID) {
-        const all = await this.db.read<Appointment>("appointments");
+        const all = await this.list();
         return all.filter(x => x.doctorId === doctorId);
     }
+
     async listByPatient(patientId: ID) {
-        const all = await this.db.read<Appointment>("appointments");
+        const all = await this.list();
         return all.filter(x => x.patientId === patientId);
     }
 }
