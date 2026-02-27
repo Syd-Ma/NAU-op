@@ -1,0 +1,7 @@
+[
+  { "LastName": "Іваненко", "FirstName": "Олена", "Course": 5, "StudentCard": "AB12345", "Gender": "Female", "AverageGrade": 93.5, "TaxId": "1234567890" },
+  { "LastName": "Петренко", "FirstName": "Ігор", "Course": 5, "StudentCard": "CD67890", "Gender": "Male", "AverageGrade": 95.0, "TaxId": "0987654321" },
+  { "LastName": "Сидоренко", "FirstName": "Марія", "Course": 5, "StudentCard": "EF11111", "Gender": "Female", "AverageGrade": 88.0, "TaxId": "1111111111" },
+  { "LastName": "Коваль", "FirstName": "Анна", "Course": 5, "StudentCard": "GH22222", "Gender": "Female", "AverageGrade": 97.0, "TaxId": "2222222222" },
+  { "LastName": "Бондар", "FirstName": "Артем", "Course": 4, "StudentCard": "IJ33333", "Gender": "Male", "AverageGrade": 99.0, "TaxId": "3333333333" }
+]
