@@ -1,15 +1,16 @@
 {
-  "name": "museum-lab22-variant13",
+  "name": "lab3-museum-variant13-ts",
   "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "start": "node dist/main.js",
+    "build": "tsc -p tsconfig.json --noEmit",
+    "start": "tsx src/main.ts",
     "dev": "npm run build && npm start"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
     "typescript": "^6.0.3"
   }
 }

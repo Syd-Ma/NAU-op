@@ -1,5 +1,6 @@
 @startuml
 skinparam classAttributeIconSize 0
+title Lab 2.2 Variant 13 - Museum Layered Architecture (TypeScript)
 
 package "Presentation Layer" {
   class ConsoleApp
@@ -56,5 +57,10 @@ end note
 
 note bottom of GenericRepository~T~
 Generic repository for all entity types.
+end note
+
+note right of JsonDataContext
+TypeScript implementation uses
+JSON storage instead of EF.
 end note
 @enduml
