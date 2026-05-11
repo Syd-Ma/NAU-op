@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+title Lab 2.2 Variant 13 - Museum Layered Architecture (TypeScript)
+
+package "Presentation Layer" {
+  class ConsoleApp
+}
+
+package "BLL Layer" {
+  interface IMuseumService
+  class MuseumService
+  class MuseumMapper
+  class Exhibition
+  class ExhibitionSession
+  class PlannedTour
+  class PersonalVisitPlan
+  class CustomTourRequest
+}
+
+package "DAL Layer" {
+  interface IRepository~T~
+  interface IUnitOfWork
+  class GenericRepository~T~ <<Repository>>
+  class JsonUnitOfWork <<UnitOfWork>>
+  class JsonDataContext
+  class ExhibitionEntity
+  class ExhibitionSessionEntity
+  class PlannedTourEntity
+  class PersonalVisitPlanEntity
+  class CustomTourRequestEntity
+}
+
+ConsoleApp --> IMuseumService
+IMuseumService <|.. MuseumService
+MuseumService --> IUnitOfWork
+MuseumService --> MuseumMapper
+IUnitOfWork <|.. JsonUnitOfWork
+JsonUnitOfWork --> GenericRepository~T~
+JsonUnitOfWork --> JsonDataContext
+GenericRepository~T~ ..|> IRepository~T~
+
+MuseumMapper ..> ExhibitionEntity
+MuseumMapper ..> Exhibition
+MuseumMapper ..> ExhibitionSessionEntity
+MuseumMapper ..> ExhibitionSession
+MuseumMapper ..> PlannedTourEntity
+MuseumMapper ..> PlannedTour
+MuseumMapper ..> PersonalVisitPlanEntity
+MuseumMapper ..> PersonalVisitPlan
+MuseumMapper ..> CustomTourRequestEntity
+MuseumMapper ..> CustomTourRequest
+
+note bottom of JsonUnitOfWork
+Single entry point to repositories
+and saving changes.
+end note
+
+note bottom of GenericRepository~T~
+Generic repository for all entity types.
+end note
+
+note right of JsonDataContext
+TypeScript implementation uses
+JSON storage instead of EF.
+end note
+@enduml
